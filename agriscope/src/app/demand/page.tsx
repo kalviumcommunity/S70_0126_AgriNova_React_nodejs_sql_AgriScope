@@ -154,53 +154,53 @@ export default function DemandPage() {
   // Success State
   if (submitStatus === "success") {
     return (
-      <div className="min-h-screen py-12 px-4 bg-gray-50">
-        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md p-8 text-center">
-          <div className="text-6xl mb-4">✅</div>
-          <h2 className="text-2xl font-bold text-green-700 mb-2">
+      <main className="min-h-screen py-10 md:py-14 px-4 sm:px-6 bg-gray-50">
+        <div className="max-w-md mx-auto bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8 text-center">
+          <div className="text-5xl mb-4">✅</div>
+          <h2 className="text-xl font-bold text-green-700 mb-2">
             Demand Submitted Successfully!
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-sm text-gray-600 mb-6 leading-relaxed">
             Your crop demand has been recorded. Farmers will be able to see your
             requirement and may contact you directly.
           </p>
-          <div className="space-y-3">
+          <div className="space-y-2">
             <button
               onClick={resetForm}
-              className="w-full bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+              className="w-full bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 active:bg-green-800 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
             >
               Submit Another Demand
             </button>
             <a
               href="/dashboard"
-              className="block w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+              className="block w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-200 active:bg-gray-300 transition-colors"
             >
               Go to Dashboard
             </a>
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-gray-50">
-      <div className="max-w-2xl mx-auto">
+    <main className="min-h-screen py-10 md:py-14 px-4 sm:px-6 bg-gray-50">
+      <div className="max-w-lg mx-auto">
         {/* Header */}
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <header className="mb-6 text-center">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
             📝 Submit Buyer Demand
           </h1>
-          <p className="text-gray-700">
+          <p className="text-sm text-gray-500">
             Post your crop requirements and connect with farmers directly
           </p>
-        </div>
+        </header>
 
         {/* Error Alert */}
         {submitStatus === "error" && (
-          <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
-            <p className="font-medium">❌ Submission failed</p>
-            <p className="text-sm mt-1">
+          <div className="mb-5 bg-red-50 border border-red-100 rounded-lg p-4 text-red-700">
+            <p className="font-medium text-sm">❌ Submission failed</p>
+            <p className="text-xs mt-1 text-red-600">
               Please try again. If the problem persists, contact support.
             </p>
           </div>
@@ -209,181 +209,213 @@ export default function DemandPage() {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-xl shadow-md p-6 md:p-8"
+          className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 md:p-6"
         >
-          {/* Buyer Name */}
-          <div className="mb-6">
-            <label
-              htmlFor="buyerName"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Buyer Name / Business Name *
-            </label>
-            <input
-              type="text"
-              id="buyerName"
-              name="buyerName"
-              value={formData.buyerName}
-              onChange={handleChange}
-              placeholder="Enter your name or business name"
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                errors.buyerName ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.buyerName && (
-              <p className="text-red-500 text-sm mt-1">{errors.buyerName}</p>
-            )}
-          </div>
+          {/* Section: Your Info */}
+          <fieldset className="mb-6">
+            <legend className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">
+              Your Information
+            </legend>
 
-          {/* Crop Selection */}
-          <div className="mb-6">
-            <label
-              htmlFor="crop"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Crop Required *
-            </label>
-            <select
-              id="crop"
-              name="crop"
-              value={formData.crop}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                errors.crop ? "border-red-500" : "border-gray-300"
-              }`}
-            >
-              <option value="">Select a crop</option>
-              {crops.map((crop) => (
-                <option key={crop} value={crop}>
-                  {crop}
-                </option>
-              ))}
-            </select>
-            {errors.crop && (
-              <p className="text-red-500 text-sm mt-1">{errors.crop}</p>
-            )}
-          </div>
-
-          {/* Quantity and Price Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            {/* Quantity */}
-            <div>
+            {/* Buyer Name */}
+            <div className="mb-5">
               <label
-                htmlFor="quantity"
-                className="block text-sm font-medium text-gray-700 mb-2"
+                htmlFor="buyerName"
+                className="block text-sm font-medium text-gray-700 mb-1.5"
               >
-                Quantity (Quintals) *
+                Buyer Name / Business Name
+                <span className="text-red-400 ml-0.5">*</span>
               </label>
               <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                value={formData.quantity}
+                type="text"
+                id="buyerName"
+                name="buyerName"
+                value={formData.buyerName}
                 onChange={handleChange}
-                placeholder="e.g., 50"
-                min="1"
-                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                  errors.quantity ? "border-red-500" : "border-gray-300"
+                placeholder="e.g., Sharma Traders"
+                className={`w-full px-3.5 py-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent ${
+                  errors.buyerName ? "border-red-400 bg-red-50/50" : "border-gray-200 bg-white"
                 }`}
               />
-              {errors.quantity && (
-                <p className="text-red-500 text-sm mt-1">{errors.quantity}</p>
+              {errors.buyerName && (
+                <p className="text-red-500 text-xs mt-1.5">{errors.buyerName}</p>
               )}
             </div>
 
-            {/* Expected Price */}
+            {/* Contact */}
             <div>
               <label
-                htmlFor="expectedPrice"
-                className="block text-sm font-medium text-gray-700 mb-2"
+                htmlFor="contact"
+                className="block text-sm font-medium text-gray-700 mb-1.5"
               >
-                Expected Price (₹/Quintal) *
+                Contact Number
+                <span className="text-red-400 ml-0.5">*</span>
               </label>
               <input
-                type="number"
-                id="expectedPrice"
-                name="expectedPrice"
-                value={formData.expectedPrice}
+                type="tel"
+                id="contact"
+                name="contact"
+                value={formData.contact}
                 onChange={handleChange}
-                placeholder="e.g., 2200"
-                min="1"
-                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                  errors.expectedPrice ? "border-red-500" : "border-gray-300"
+                placeholder="10-digit mobile number"
+                maxLength={10}
+                className={`w-full px-3.5 py-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent ${
+                  errors.contact ? "border-red-400 bg-red-50/50" : "border-gray-200 bg-white"
                 }`}
               />
-              {errors.expectedPrice && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.expectedPrice}
-                </p>
+              {errors.contact && (
+                <p className="text-red-500 text-xs mt-1.5">{errors.contact}</p>
               )}
             </div>
-          </div>
+          </fieldset>
 
-          {/* Location */}
-          <div className="mb-6">
-            <label
-              htmlFor="location"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Pickup Location / City *
-            </label>
-            <input
-              type="text"
-              id="location"
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-              placeholder="e.g., Azadpur Mandi, Delhi"
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                errors.location ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.location && (
-              <p className="text-red-500 text-sm mt-1">{errors.location}</p>
-            )}
-          </div>
+          {/* Divider */}
+          <hr className="border-gray-100 mb-6" />
 
-          {/* Contact */}
-          <div className="mb-6">
-            <label
-              htmlFor="contact"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Contact Number *
-            </label>
-            <input
-              type="tel"
-              id="contact"
-              name="contact"
-              value={formData.contact}
-              onChange={handleChange}
-              placeholder="10-digit mobile number"
-              maxLength={10}
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                errors.contact ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.contact && (
-              <p className="text-red-500 text-sm mt-1">{errors.contact}</p>
-            )}
-          </div>
+          {/* Section: Crop Details */}
+          <fieldset className="mb-6">
+            <legend className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">
+              Crop Details
+            </legend>
+
+            {/* Crop Selection */}
+            <div className="mb-5">
+              <label
+                htmlFor="crop"
+                className="block text-sm font-medium text-gray-700 mb-1.5"
+              >
+                Crop Required
+                <span className="text-red-400 ml-0.5">*</span>
+              </label>
+              <select
+                id="crop"
+                name="crop"
+                value={formData.crop}
+                onChange={handleChange}
+                className={`w-full px-3.5 py-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent appearance-none bg-no-repeat bg-right ${
+                  errors.crop ? "border-red-400 bg-red-50/50" : "border-gray-200 bg-white"
+                }`}
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E")`,
+                  backgroundPosition: "right 0.75rem center",
+                  backgroundSize: "1.25em 1.25em",
+                }}
+              >
+                <option value="">Select a crop</option>
+                {crops.map((crop) => (
+                  <option key={crop} value={crop}>
+                    {crop}
+                  </option>
+                ))}
+              </select>
+              {errors.crop && (
+                <p className="text-red-500 text-xs mt-1.5">{errors.crop}</p>
+              )}
+            </div>
+
+            {/* Quantity and Price Row */}
+            <div className="grid grid-cols-2 gap-4 mb-5">
+              {/* Quantity */}
+              <div>
+                <label
+                  htmlFor="quantity"
+                  className="block text-sm font-medium text-gray-700 mb-1.5"
+                >
+                  Quantity (Q)
+                  <span className="text-red-400 ml-0.5">*</span>
+                </label>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  value={formData.quantity}
+                  onChange={handleChange}
+                  placeholder="e.g., 50"
+                  min="1"
+                  className={`w-full px-3.5 py-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent ${
+                    errors.quantity ? "border-red-400 bg-red-50/50" : "border-gray-200 bg-white"
+                  }`}
+                />
+                {errors.quantity && (
+                  <p className="text-red-500 text-xs mt-1.5">{errors.quantity}</p>
+                )}
+              </div>
+
+              {/* Expected Price */}
+              <div>
+                <label
+                  htmlFor="expectedPrice"
+                  className="block text-sm font-medium text-gray-700 mb-1.5"
+                >
+                  Price (₹/Q)
+                  <span className="text-red-400 ml-0.5">*</span>
+                </label>
+                <input
+                  type="number"
+                  id="expectedPrice"
+                  name="expectedPrice"
+                  value={formData.expectedPrice}
+                  onChange={handleChange}
+                  placeholder="e.g., 2200"
+                  min="1"
+                  className={`w-full px-3.5 py-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent ${
+                    errors.expectedPrice ? "border-red-400 bg-red-50/50" : "border-gray-200 bg-white"
+                  }`}
+                />
+                {errors.expectedPrice && (
+                  <p className="text-red-500 text-xs mt-1.5">
+                    {errors.expectedPrice}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Location */}
+            <div>
+              <label
+                htmlFor="location"
+                className="block text-sm font-medium text-gray-700 mb-1.5"
+              >
+                Pickup Location
+                <span className="text-red-400 ml-0.5">*</span>
+              </label>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                placeholder="e.g., Azadpur Mandi, Delhi"
+                className={`w-full px-3.5 py-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent ${
+                  errors.location ? "border-red-400 bg-red-50/50" : "border-gray-200 bg-white"
+                }`}
+              />
+              {errors.location && (
+                <p className="text-red-500 text-xs mt-1.5">{errors.location}</p>
+              )}
+            </div>
+          </fieldset>
+
+          {/* Divider */}
+          <hr className="border-gray-100 mb-6" />
 
           {/* Notes */}
-          <div className="mb-8">
+          <div className="mb-6">
             <label
               htmlFor="notes"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-700 mb-1.5"
             >
-              Additional Notes (Optional)
+              Additional Notes
+              <span className="text-gray-400 text-xs font-normal ml-1">(optional)</span>
             </label>
             <textarea
               id="notes"
               name="notes"
               value={formData.notes}
               onChange={handleChange}
-              placeholder="Any specific quality requirements, delivery timeline, etc."
+              placeholder="Quality requirements, delivery timeline, etc."
               rows={3}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full px-3.5 py-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
             />
           </div>
 
@@ -391,16 +423,16 @@ export default function DemandPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full py-4 rounded-lg text-lg font-semibold transition-colors ${
+            className={`w-full py-3.5 rounded-lg text-base font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${
               isSubmitting
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-green-600 hover:bg-green-700 text-white"
+                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                : "bg-green-600 hover:bg-green-700 active:bg-green-800 text-white focus:ring-green-500"
             }`}
           >
             {isSubmitting ? (
               <span className="flex items-center justify-center">
                 <svg
-                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-gray-500"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -422,24 +454,39 @@ export default function DemandPage() {
                 Submitting...
               </span>
             ) : (
-              "Submit Demand"
+              "Submit Demand →"
             )}
           </button>
         </form>
 
         {/* Info Box */}
-        <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h3 className="font-medium text-blue-800 mb-2">
-            ℹ️ How it works
-          </h3>
-          <ul className="text-blue-700 text-sm space-y-1">
-            <li>• Your demand will be visible to farmers on the platform</li>
-            <li>• Farmers matching your crop can see your requirements</li>
-            <li>• Interested farmers may contact you directly</li>
-            <li>• All transactions happen directly between you and the farmer</li>
-          </ul>
-        </div>
+        <aside className="mt-5 bg-gray-50 border border-gray-100 rounded-lg p-4">
+          <details className="group">
+            <summary className="flex items-center justify-between cursor-pointer list-none text-sm font-medium text-gray-600">
+              <span>ℹ️ How it works</span>
+              <span className="text-gray-400 group-open:rotate-180 transition-transform text-xs">▼</span>
+            </summary>
+            <ul className="mt-3 text-gray-500 text-xs space-y-2 leading-relaxed">
+              <li className="flex gap-2">
+                <span className="text-gray-400">•</span>
+                Your demand will be visible to farmers on the platform
+              </li>
+              <li className="flex gap-2">
+                <span className="text-gray-400">•</span>
+                Farmers matching your crop can see your requirements
+              </li>
+              <li className="flex gap-2">
+                <span className="text-gray-400">•</span>
+                Interested farmers may contact you directly
+              </li>
+              <li className="flex gap-2">
+                <span className="text-gray-400">•</span>
+                All transactions happen directly between you and the farmer
+              </li>
+            </ul>
+          </details>
+        </aside>
       </div>
-    </div>
+    </main>
   );
 }
