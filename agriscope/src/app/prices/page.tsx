@@ -122,71 +122,74 @@ export default async function PricesPage() {
   });
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-gray-50">
-      <div className="max-w-6xl mx-auto">
+    <main className="min-h-screen py-10 md:py-14 px-6 bg-gray-50">
+      <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <header className="mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
             📊 Live Mandi Prices
           </h1>
-          <p className="text-gray-700">
+          <p className="text-gray-700 text-base">
             Real-time crop prices from mandis across India
           </p>
-          <div className="mt-2 text-sm text-green-600 bg-green-50 inline-block px-3 py-1 rounded-full">
-            🔄 Auto-refreshes every 60 seconds | Last updated: {lastUpdated}
+          <div className="mt-3 text-sm text-green-700 bg-green-50 border border-green-100 inline-flex items-center gap-2 px-4 py-2 rounded-full">
+            <span aria-hidden="true">🔄</span>
+            <span>Auto-refreshes every 60 seconds</span>
+            <span className="text-green-600">•</span>
+            <span>Last updated: {lastUpdated}</span>
           </div>
-        </div>
+        </header>
 
         {/* Price Table */}
-        <div className="bg-white rounded-xl shadow-md overflow-hidden">
+        <section className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-green-600 text-white">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold">
+                  <th scope="col" className="px-4 md:px-6 py-4 text-left text-sm font-semibold">
                     Crop
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold">
+                  <th scope="col" className="px-4 md:px-6 py-4 text-left text-sm font-semibold">
                     Mandi
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold">
+                  <th scope="col" className="px-4 md:px-6 py-4 text-left text-sm font-semibold hidden sm:table-cell">
                     State
                   </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold">
+                  <th scope="col" className="px-4 md:px-6 py-4 text-right text-sm font-semibold">
                     Min (₹)
                   </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold">
+                  <th scope="col" className="px-4 md:px-6 py-4 text-right text-sm font-semibold">
                     Max (₹)
                   </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold">
+                  <th scope="col" className="px-4 md:px-6 py-4 text-right text-sm font-semibold">
                     Modal (₹)
                   </th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold">
+                  <th scope="col" className="px-4 md:px-6 py-4 text-center text-sm font-semibold hidden md:table-cell">
                     Unit
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-gray-100">
                 {prices.map((price, index) => (
                   <tr
                     key={price.id}
-                    className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                    className={`${index % 2 === 0 ? "bg-gray-50/50" : "bg-white"} hover:bg-green-50/50`}
                   >
-                    <td className="px-6 py-4 font-medium text-gray-800">
+                    <td className="px-4 md:px-6 py-4 font-medium text-gray-900">
                       {price.crop}
                     </td>
-                    <td className="px-6 py-4 text-gray-600">{price.mandi}</td>
-                    <td className="px-6 py-4 text-gray-600">{price.state}</td>
-                    <td className="px-6 py-4 text-right text-gray-600">
+                    <td className="px-4 md:px-6 py-4 text-gray-600">{price.mandi}</td>
+                    <td className="px-4 md:px-6 py-4 text-gray-600 hidden sm:table-cell">{price.state}</td>
+                    <td className="px-4 md:px-6 py-4 text-right text-gray-600 tabular-nums">
                       ₹{price.minPrice.toLocaleString("en-IN")}
                     </td>
-                    <td className="px-6 py-4 text-right text-gray-600">
+                    <td className="px-4 md:px-6 py-4 text-right text-gray-600 tabular-nums">
                       ₹{price.maxPrice.toLocaleString("en-IN")}
                     </td>
-                    <td className="px-6 py-4 text-right font-semibold text-green-600">
+                    <td className="px-4 md:px-6 py-4 text-right font-semibold text-green-700 tabular-nums">
                       ₹{price.modalPrice.toLocaleString("en-IN")}
                     </td>
-                    <td className="px-6 py-4 text-center text-gray-500 text-sm">
+                    <td className="px-4 md:px-6 py-4 text-center text-gray-500 text-sm hidden md:table-cell">
                       {price.unit}
                     </td>
                   </tr>
@@ -194,28 +197,27 @@ export default async function PricesPage() {
               </tbody>
             </table>
           </div>
-        </div>
+        </section>
 
         {/* Info Box */}
-        <div className="mt-8 bg-amber-50 border border-amber-200 rounded-lg p-6">
-          <h3 className="font-semibold text-amber-800 mb-2">
-            ℹ️ Understanding Prices
-          </h3>
-          <ul className="text-amber-700 space-y-1 text-sm">
+        <aside className="mt-8 bg-amber-50/70 border border-amber-200 rounded-xl p-5 md:p-6">
+          <h2 className="font-semibold text-amber-900 mb-3 flex items-center gap-2">
+            <span aria-hidden="true">ℹ️</span>
+            Understanding Prices
+          </h2>
+          <ul className="text-amber-800 space-y-2 text-sm leading-relaxed">
             <li>
-              <strong>Min Price:</strong> Lowest traded price in the mandi today
+              <strong className="text-amber-900">Min Price:</strong> Lowest traded price in the mandi today
             </li>
             <li>
-              <strong>Max Price:</strong> Highest traded price in the mandi
-              today
+              <strong className="text-amber-900">Max Price:</strong> Highest traded price in the mandi today
             </li>
             <li>
-              <strong>Modal Price:</strong> Most common transaction price
-              (recommended reference)
+              <strong className="text-amber-900">Modal Price:</strong> Most common transaction price (recommended reference)
             </li>
           </ul>
-        </div>
+        </aside>
       </div>
-    </div>
+    </main>
   );
 }
