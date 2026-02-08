@@ -103,95 +103,107 @@ export default async function DashboardPage() {
   });
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-gray-50">
+    <main className="min-h-screen py-8 md:py-10 px-4 sm:px-6 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <header className="mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
             📈 Farmer Dashboard
           </h1>
-          <p className="text-gray-700">
-            Real-time market overview • Updated: {currentTime}
+          <p className="text-sm text-gray-500">
+            Real-time market overview
+            <span className="mx-2 text-gray-300">•</span>
+            <span className="text-gray-400">Updated {currentTime}</span>
           </p>
-          <div className="mt-2 text-sm text-blue-600 bg-blue-50 inline-block px-3 py-1 rounded-full">
-            🔴 Live Data - Refreshes on every visit
-          </div>
-        </div>
+          <span className="inline-flex items-center gap-1.5 mt-2 text-xs text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
+            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+            Live Data
+          </span>
+        </header>
 
         {/* Dashboard Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Live Prices Card */}
-          <div className="lg:col-span-2 bg-white rounded-xl shadow-md p-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+          <section className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-4 md:p-5">
+            <h2 className="text-base font-semibold text-gray-800 mb-3 flex items-center gap-2">
               💰 Live Prices
-              <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+              <span className="text-[10px] uppercase tracking-wide bg-green-50 text-green-600 px-1.5 py-0.5 rounded font-medium">
                 Live
               </span>
             </h2>
-            <div className="overflow-x-auto">
-              <table className="w-full">
+            <div className="overflow-x-auto -mx-4 md:mx-0">
+              <table className="w-full min-w-[320px]">
                 <thead>
                   <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 text-sm font-medium text-gray-500">
+                    <th className="text-left py-2.5 px-4 md:px-2 text-xs font-semibold text-gray-500 uppercase tracking-wide">
                       Crop
                     </th>
-                    <th className="text-left py-3 text-sm font-medium text-gray-500">
+                    <th className="text-left py-2.5 px-2 text-xs font-semibold text-gray-500 uppercase tracking-wide">
                       Mandi
                     </th>
-                    <th className="text-right py-3 text-sm font-medium text-gray-500">
+                    <th className="text-right py-2.5 px-2 text-xs font-semibold text-gray-500 uppercase tracking-wide">
                       Price (₹/Q)
                     </th>
-                    <th className="text-right py-3 text-sm font-medium text-gray-500">
+                    <th className="text-right py-2.5 px-4 md:px-2 text-xs font-semibold text-gray-500 uppercase tracking-wide">
                       Change
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {prices.map((item) => (
-                    <tr key={item.id} className="border-b border-gray-100">
-                      <td className="py-3 font-medium text-gray-800">
+                  {prices.map((item, index) => (
+                    <tr
+                      key={item.id}
+                      className={`border-b border-gray-50 hover:bg-gray-50/70 transition-colors ${
+                        index % 2 === 0 ? "bg-white" : "bg-gray-50/40"
+                      }`}
+                    >
+                      <td className="py-2.5 px-4 md:px-2 font-medium text-gray-800 text-sm">
                         {item.crop}
                       </td>
-                      <td className="py-3 text-gray-600">{item.mandi}</td>
-                      <td className="py-3 text-right font-semibold">
+                      <td className="py-2.5 px-2 text-gray-600 text-sm">
+                        {item.mandi}
+                      </td>
+                      <td className="py-2.5 px-2 text-right font-semibold text-gray-800 text-sm tabular-nums">
                         ₹{item.price.toLocaleString("en-IN")}
                       </td>
-                      <td
-                        className={`py-3 text-right font-medium ${
-                          item.change >= 0 ? "text-green-600" : "text-red-600"
-                        }`}
-                      >
-                        {item.change >= 0 ? "↑" : "↓"}{" "}
-                        {Math.abs(item.change).toFixed(1)}%
+                      <td className="py-2.5 px-4 md:px-2 text-right text-sm tabular-nums">
+                        <span
+                          className={`inline-flex items-center gap-0.5 font-medium ${
+                            item.change >= 0 ? "text-green-600" : "text-red-600"
+                          }`}
+                        >
+                          {item.change >= 0 ? "↑" : "↓"}
+                          {Math.abs(item.change).toFixed(1)}%
+                        </span>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-          </div>
+          </section>
 
           {/* Alerts Card */}
-          <div className="bg-white rounded-xl shadow-md p-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+          <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 md:p-5">
+            <h2 className="text-base font-semibold text-gray-800 mb-3">
               🔔 Recent Alerts
             </h2>
-            <div className="space-y-3">
+            <div className="space-y-2">
               {alerts.slice(0, 4).map((alert) => (
                 <div
                   key={alert.id}
-                  className={`p-3 rounded-lg ${
+                  className={`px-3 py-2.5 rounded-md border-l-2 ${
                     alert.type === "price_rise"
-                      ? "bg-green-50 border-l-4 border-green-500"
+                      ? "bg-green-50/60 border-green-400"
                       : alert.type === "demand_spike"
-                      ? "bg-amber-50 border-l-4 border-amber-500"
-                      : "bg-red-50 border-l-4 border-red-500"
+                      ? "bg-amber-50/60 border-amber-400"
+                      : "bg-red-50/60 border-red-400"
                   }`}
                 >
-                  <p className="text-sm font-medium text-gray-800">
+                  <p className="text-sm text-gray-700 leading-snug">
                     {alert.message}
                   </p>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-[11px] text-gray-400 mt-1">
                     {new Date(alert.timestamp).toLocaleTimeString("en-IN", {
                       hour: "2-digit",
                       minute: "2-digit",
@@ -202,61 +214,58 @@ export default async function DashboardPage() {
             </div>
             <a
               href="/alerts"
-              className="block text-center mt-4 text-green-600 hover:text-green-700 font-medium text-sm"
+              className="block text-center mt-3 text-green-600 hover:text-green-700 font-medium text-sm py-1"
             >
               View All Alerts →
             </a>
-          </div>
+          </section>
 
           {/* Demand Summary Card */}
-          <div className="lg:col-span-3 bg-white rounded-xl shadow-md p-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-              📢 Buyer Demand Summary
-              <span className="ml-2 text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full">
+          <section className="lg:col-span-3 bg-white rounded-xl shadow-sm border border-gray-100 p-4 md:p-5">
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <h2 className="text-base font-semibold text-gray-800">
+                📢 Buyer Demand Summary
+              </h2>
+              <span className="text-[10px] uppercase tracking-wide bg-amber-50 text-amber-600 px-1.5 py-0.5 rounded font-medium">
                 Today
               </span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {demand.map((item) => (
-                <div
+                <article
                   key={item.crop}
-                  className="bg-gray-50 rounded-lg p-4 border border-gray-100"
+                  className="bg-gray-50/80 rounded-lg p-3 border border-gray-100"
                 >
-                  <h3 className="font-semibold text-lg text-gray-800">
+                  <h3 className="font-semibold text-gray-800 text-sm mb-2">
                     {item.crop}
                   </h3>
-                  <div className="mt-2 space-y-1 text-sm">
-                    <p className="text-gray-600">
-                      Quantity:{" "}
-                      <span className="font-medium text-gray-800">
-                        {item.totalQuantity} Quintals
-                      </span>
+                  <p className="text-xl font-bold text-gray-900 tabular-nums">
+                    {item.totalQuantity}
+                    <span className="text-xs font-normal text-gray-500 ml-1">Q</span>
+                  </p>
+                  <div className="mt-2 pt-2 border-t border-gray-200/80 space-y-0.5 text-xs">
+                    <p className="text-gray-500">
+                      Avg: <span className="text-gray-700 font-medium">₹{item.avgPrice.toLocaleString("en-IN")}/Q</span>
                     </p>
-                    <p className="text-gray-600">
-                      Avg. Price:{" "}
-                      <span className="font-medium text-green-600">
-                        ₹{item.avgPrice.toLocaleString("en-IN")}/Q
-                      </span>
-                    </p>
-                    <p className="text-gray-600">
-                      Active Buyers:{" "}
-                      <span className="font-medium text-blue-600">
-                        {item.buyers}
-                      </span>
+                    <p className="text-gray-500">
+                      Buyers: <span className="text-gray-700 font-medium">{item.buyers}</span>
                     </p>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
-            <a
-              href="/demand"
-              className="inline-block mt-4 bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition-colors text-sm font-medium"
-            >
-              Submit Your Demand →
-            </a>
-          </div>
+            <div className="mt-4 pt-3 border-t border-gray-100">
+              <a
+                href="/demand"
+                className="inline-flex items-center gap-1 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 active:bg-green-800 transition-colors text-sm font-medium focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              >
+                Submit Your Demand
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </section>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
