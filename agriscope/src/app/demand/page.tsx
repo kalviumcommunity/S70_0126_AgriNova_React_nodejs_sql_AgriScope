@@ -154,7 +154,7 @@ export default function DemandPage() {
   // Success State
   if (submitStatus === "success") {
     return (
-      <main className="min-h-screen py-10 md:py-14 px-4 sm:px-6 bg-gray-50">
+      <main className="min-h-screen py-8 md:py-10 px-4 sm:px-6 bg-gray-50">
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8 text-center">
           <div className="text-5xl mb-4">✅</div>
           <h2 className="text-xl font-bold text-green-700 mb-2">
@@ -184,10 +184,10 @@ export default function DemandPage() {
   }
 
   return (
-    <main className="min-h-screen py-10 md:py-14 px-4 sm:px-6 bg-gray-50">
+    <main className="min-h-screen py-8 md:py-10 px-4 sm:px-6 bg-gray-50">
       <div className="max-w-lg mx-auto">
         {/* Header */}
-        <header className="mb-6 text-center">
+        <header className="mb-6 md:mb-8 text-center">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
             📝 Submit Buyer Demand
           </h1>

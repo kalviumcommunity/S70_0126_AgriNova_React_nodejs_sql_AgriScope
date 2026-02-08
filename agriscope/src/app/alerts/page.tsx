@@ -174,10 +174,10 @@ export default async function AlertsPage() {
     <main className="min-h-screen py-8 md:py-10 px-4 sm:px-6 bg-gray-50">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
-        <header className="mb-6">
+        <header className="mb-6 md:mb-8">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-0.5">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
                 🔔 Price & Demand Alerts
               </h1>
               <p className="text-sm text-gray-500">
@@ -193,7 +193,7 @@ export default async function AlertsPage() {
         </header>
 
         {/* Alert Legend - Collapsible */}
-        <details className="bg-white rounded-lg border border-gray-100 mb-5">
+        <details className="bg-white rounded-lg border border-gray-100 mb-4">
           <summary className="px-4 py-3 cursor-pointer text-sm font-medium text-gray-600 flex items-center justify-between list-none">
             <span>Alert Types</span>
             <span className="text-gray-400 text-xs">▼</span>
@@ -295,7 +295,7 @@ export default async function AlertsPage() {
         )}
 
         {/* Info Box */}
-        <aside className="mt-6 bg-gray-50 border border-gray-100 rounded-lg p-4">
+        <aside className="mt-6 md:mt-8 bg-gray-50 border border-gray-100 rounded-lg p-4">
           <details className="group">
             <summary className="flex items-center justify-between cursor-pointer list-none text-sm font-medium text-gray-600">
               <span>💡 About Alerts</span>

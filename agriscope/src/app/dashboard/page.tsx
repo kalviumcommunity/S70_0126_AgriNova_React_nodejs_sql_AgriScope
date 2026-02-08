@@ -169,7 +169,7 @@ export default async function DashboardPage() {
                       <td className="py-2.5 px-4 md:px-2 text-right text-sm tabular-nums">
                         <span
                           className={`inline-flex items-center gap-0.5 font-medium ${
-                            item.change >= 0 ? "text-green-600" : "text-red-600"
+                            item.change >= 0 ? "text-emerald-600" : "text-rose-600"
                           }`}
                         >
                           {item.change >= 0 ? "↑" : "↓"}
@@ -194,10 +194,10 @@ export default async function DashboardPage() {
                   key={alert.id}
                   className={`px-3 py-2.5 rounded-md border-l-2 ${
                     alert.type === "price_rise"
-                      ? "bg-green-50/60 border-green-400"
+                      ? "bg-emerald-50/60 border-emerald-300"
                       : alert.type === "demand_spike"
-                      ? "bg-amber-50/60 border-amber-400"
-                      : "bg-red-50/60 border-red-400"
+                      ? "bg-amber-50/60 border-amber-300"
+                      : "bg-rose-50/60 border-rose-300"
                   }`}
                 >
                   <p className="text-sm text-gray-700 leading-snug">

@@ -3,18 +3,18 @@ export default function AlertsLoading() {
     <main className="min-h-screen py-8 md:py-10 px-4 sm:px-6 bg-gray-50">
       <div className="max-w-2xl mx-auto">
         {/* Header Skeleton */}
-        <header className="mb-6">
+        <header className="mb-6 md:mb-8">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <div className="h-6 bg-gray-200 rounded w-52 mb-2 animate-pulse"></div>
-              <div className="h-4 bg-gray-100 rounded w-40 animate-pulse"></div>
+              <div className="h-7 bg-gray-200 rounded w-56 mb-2 animate-pulse"></div>
+              <div className="h-4 bg-gray-100 rounded w-44 animate-pulse"></div>
             </div>
             <div className="h-6 bg-gray-200 rounded-full w-14 animate-pulse"></div>
           </div>
         </header>
 
         {/* Legend Skeleton */}
-        <div className="bg-white rounded-lg border border-gray-100 p-4 mb-5">
+        <div className="bg-white rounded-lg border border-gray-100 p-4 mb-4">
           <div className="h-4 bg-gray-200 rounded w-20 animate-pulse"></div>
         </div>
 
