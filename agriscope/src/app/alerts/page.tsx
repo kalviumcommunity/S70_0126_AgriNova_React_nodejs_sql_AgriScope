@@ -118,15 +118,30 @@ function getAlertIcon(type: Alert["type"]) {
 function getAlertStyle(type: Alert["type"]) {
   switch (type) {
     case "price_rise":
-      return "bg-green-50 border-green-500 text-green-800";
+      return "bg-emerald-50/70 border-emerald-300";
     case "price_drop":
-      return "bg-red-50 border-red-500 text-red-800";
+      return "bg-rose-50/70 border-rose-300";
     case "demand_spike":
-      return "bg-amber-50 border-amber-500 text-amber-800";
+      return "bg-amber-50/70 border-amber-300";
     case "supply_low":
-      return "bg-orange-50 border-orange-500 text-orange-800";
+      return "bg-orange-50/70 border-orange-300";
     default:
-      return "bg-gray-50 border-gray-500 text-gray-800";
+      return "bg-gray-50 border-gray-300";
+  }
+}
+
+function getAlertAccent(type: Alert["type"]) {
+  switch (type) {
+    case "price_rise":
+      return "text-emerald-600";
+    case "price_drop":
+      return "text-rose-600";
+    case "demand_spike":
+      return "text-amber-600";
+    case "supply_low":
+      return "text-orange-600";
+    default:
+      return "text-gray-600";
   }
 }
 
@@ -156,137 +171,153 @@ export default async function AlertsPage() {
   const unreadCount = alerts.filter((a) => !a.isRead).length;
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-gray-50">
-      <div className="max-w-4xl mx-auto">
+    <main className="min-h-screen py-8 md:py-10 px-4 sm:px-6 bg-gray-50">
+      <div className="max-w-2xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between flex-wrap gap-4">
+        <header className="mb-6">
+          <div className="flex items-start justify-between gap-3">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-0.5">
                 🔔 Price & Demand Alerts
               </h1>
-              <p className="text-gray-700">
-                Stay updated with market movements and buyer activity
+              <p className="text-sm text-gray-500">
+                Market movements and buyer activity
               </p>
             </div>
             {unreadCount > 0 && (
-              <div className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium">
-                {unreadCount} New Alert{unreadCount > 1 ? "s" : ""}
-              </div>
+              <span className="shrink-0 bg-gray-800 text-white text-xs px-2.5 py-1 rounded-full font-medium">
+                {unreadCount} new
+              </span>
             )}
           </div>
-        </div>
+        </header>
 
-        {/* Alert Legend */}
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
-          <h3 className="text-sm font-medium text-gray-800 mb-3">
-            Alert Types:
-          </h3>
-          <div className="flex flex-wrap gap-4 text-sm text-gray-700">
-            <span className="flex items-center gap-1">
-              <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+        {/* Alert Legend - Collapsible */}
+        <details className="bg-white rounded-lg border border-gray-100 mb-5">
+          <summary className="px-4 py-3 cursor-pointer text-sm font-medium text-gray-600 flex items-center justify-between list-none">
+            <span>Alert Types</span>
+            <span className="text-gray-400 text-xs">▼</span>
+          </summary>
+          <div className="px-4 pb-3 pt-1 flex flex-wrap gap-x-5 gap-y-2 text-xs text-gray-600">
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
               Price Rise
             </span>
-            <span className="flex items-center gap-1">
-              <span className="w-3 h-3 bg-red-500 rounded-full"></span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-rose-400 rounded-full"></span>
               Price Drop
             </span>
-            <span className="flex items-center gap-1">
-              <span className="w-3 h-3 bg-amber-500 rounded-full"></span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-amber-400 rounded-full"></span>
               Demand Spike
             </span>
-            <span className="flex items-center gap-1">
-              <span className="w-3 h-3 bg-orange-500 rounded-full"></span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-orange-400 rounded-full"></span>
               Low Supply
             </span>
           </div>
-        </div>
+        </details>
 
         {/* Alerts List */}
-        <div className="space-y-4">
+        <ul className="space-y-2.5">
           {alerts.map((alert) => (
-            <div
+            <li
               key={alert.id}
-              className={`rounded-lg border-l-4 p-5 shadow-sm ${getAlertStyle(
-                alert.type
-              )} ${!alert.isRead ? "ring-2 ring-offset-2 ring-blue-300" : ""}`}
+              className={`rounded-lg border-l-2 border bg-white p-4 ${getAlertStyle(alert.type)} ${
+                !alert.isRead ? "ring-1 ring-blue-200" : ""
+              }`}
             >
-              <div className="flex items-start justify-between">
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl">{getAlertIcon(alert.type)}</span>
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="font-semibold text-lg">{alert.crop}</span>
+              <div className="flex gap-3">
+                {/* Icon */}
+                <span className={`text-lg shrink-0 ${getAlertAccent(alert.type)}`} aria-hidden="true">
+                  {getAlertIcon(alert.type)}
+                </span>
+
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  {/* Top row: Crop + Badge + Timestamp */}
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <h2 className="font-semibold text-gray-900 truncate">
+                        {alert.crop}
+                      </h2>
                       {!alert.isRead && (
-                        <span className="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">
-                          NEW
+                        <span className="shrink-0 bg-blue-100 text-blue-600 text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded font-medium">
+                          New
                         </span>
                       )}
                     </div>
-                    <p className="text-base mb-2">{alert.message}</p>
-                    <div className="flex flex-wrap gap-4 text-sm opacity-80">
-                      <span>📍 {alert.location}</span>
-                      {alert.percentage && (
-                        <span
-                          className={`font-medium ${
-                            alert.percentage > 0
-                              ? "text-green-700"
-                              : "text-red-700"
-                          }`}
-                        >
-                          {alert.percentage > 0 ? "↑" : "↓"}{" "}
-                          {Math.abs(alert.percentage)}%
-                        </span>
-                      )}
-                    </div>
+                    <time className="text-xs text-gray-400 shrink-0">
+                      {formatTimestamp(alert.timestamp)}
+                    </time>
+                  </div>
+
+                  {/* Message */}
+                  <p className="text-sm text-gray-600 leading-snug mb-2">
+                    {alert.message}
+                  </p>
+
+                  {/* Metadata row */}
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
+                    <span className="text-gray-400">
+                      📍 {alert.location}
+                    </span>
+                    {alert.percentage && (
+                      <span
+                        className={`font-medium ${
+                          alert.percentage > 0
+                            ? "text-emerald-600"
+                            : "text-rose-600"
+                        }`}
+                      >
+                        {alert.percentage > 0 ? "↑" : "↓"}{" "}
+                        {Math.abs(alert.percentage)}%
+                      </span>
+                    )}
                   </div>
                 </div>
-                <span className="text-sm opacity-70 whitespace-nowrap">
-                  {formatTimestamp(alert.timestamp)}
-                </span>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
 
         {/* Empty State */}
         {alerts.length === 0 && (
-          <div className="text-center py-16">
-            <div className="text-6xl mb-4">🔕</div>
-            <h2 className="text-xl font-semibold text-gray-700 mb-2">
+          <div className="text-center py-14">
+            <div className="text-5xl mb-3">🔕</div>
+            <h2 className="text-lg font-semibold text-gray-700 mb-1">
               No Alerts Yet
             </h2>
-            <p className="text-gray-500">
+            <p className="text-sm text-gray-500">
               You&apos;ll see price and demand alerts here when they occur.
             </p>
           </div>
         )}
 
         {/* Info Box */}
-        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-5">
-          <h3 className="font-semibold text-blue-800 mb-2">
-            💡 About Alerts
-          </h3>
-          <ul className="text-blue-700 text-sm space-y-1">
-            <li>
-              • <strong>Price Rise:</strong> Triggered when crop prices increase
-              by more than 5%
-            </li>
-            <li>
-              • <strong>Price Drop:</strong> Triggered when crop prices decrease
-              by more than 3%
-            </li>
-            <li>
-              • <strong>Demand Spike:</strong> Triggered when buyer demand
-              increases significantly
-            </li>
-            <li>
-              • <strong>Low Supply:</strong> Triggered when mandi arrivals are
-              below average
-            </li>
-          </ul>
-        </div>
+        <aside className="mt-6 bg-gray-50 border border-gray-100 rounded-lg p-4">
+          <details className="group">
+            <summary className="flex items-center justify-between cursor-pointer list-none text-sm font-medium text-gray-600">
+              <span>💡 About Alerts</span>
+              <span className="text-gray-400 group-open:rotate-180 transition-transform text-xs">▼</span>
+            </summary>
+            <ul className="mt-3 text-gray-500 text-xs space-y-1.5 leading-relaxed">
+              <li>
+                <strong className="text-gray-600">Price Rise:</strong> Triggered when prices increase by more than 5%
+              </li>
+              <li>
+                <strong className="text-gray-600">Price Drop:</strong> Triggered when prices decrease by more than 3%
+              </li>
+              <li>
+                <strong className="text-gray-600">Demand Spike:</strong> Triggered when buyer demand increases significantly
+              </li>
+              <li>
+                <strong className="text-gray-600">Low Supply:</strong> Triggered when mandi arrivals are below average
+              </li>
+            </ul>
+          </details>
+        </aside>
       </div>
-    </div>
+    </main>
   );
 }

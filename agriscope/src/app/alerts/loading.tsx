@@ -1,49 +1,61 @@
 export default function AlertsLoading() {
   return (
-    <div className="min-h-screen py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <main className="min-h-screen py-8 md:py-10 px-4 sm:px-6 bg-gray-50">
+      <div className="max-w-2xl mx-auto">
         {/* Header Skeleton */}
-        <div className="mb-8">
-          <div className="h-8 bg-gray-200 rounded w-64 mb-2 animate-pulse"></div>
-          <div className="h-4 bg-gray-200 rounded w-96 animate-pulse"></div>
-        </div>
+        <header className="mb-6">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <div className="h-6 bg-gray-200 rounded w-52 mb-2 animate-pulse"></div>
+              <div className="h-4 bg-gray-100 rounded w-40 animate-pulse"></div>
+            </div>
+            <div className="h-6 bg-gray-200 rounded-full w-14 animate-pulse"></div>
+          </div>
+        </header>
 
         {/* Legend Skeleton */}
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
-          <div className="h-4 bg-gray-200 rounded w-24 mb-3 animate-pulse"></div>
-          <div className="flex gap-4">
-            {[...Array(4)].map((_, i) => (
-              <div
-                key={i}
-                className="h-4 bg-gray-200 rounded w-20 animate-pulse"
-              ></div>
-            ))}
-          </div>
+        <div className="bg-white rounded-lg border border-gray-100 p-4 mb-5">
+          <div className="h-4 bg-gray-200 rounded w-20 animate-pulse"></div>
         </div>
 
         {/* Alerts Skeleton */}
-        <div className="space-y-4">
-          {[...Array(5)].map((_, i) => (
-            <div
+        <ul className="space-y-2.5">
+          {[...Array(6)].map((_, i) => (
+            <li
               key={i}
-              className="bg-gray-100 rounded-lg border-l-4 border-gray-300 p-5 animate-pulse"
+              className="bg-white rounded-lg border border-gray-100 border-l-2 border-l-gray-200 p-4 animate-pulse"
             >
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 bg-gray-200 rounded"></div>
-                <div className="flex-1">
-                  <div className="h-5 bg-gray-200 rounded w-32 mb-2"></div>
-                  <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
-                  <div className="flex gap-4">
+              <div className="flex gap-3">
+                {/* Icon */}
+                <div className="w-5 h-5 bg-gray-200 rounded shrink-0"></div>
+
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  {/* Top row */}
+                  <div className="flex items-center justify-between gap-2 mb-2">
                     <div className="h-4 bg-gray-200 rounded w-24"></div>
-                    <div className="h-4 bg-gray-200 rounded w-16"></div>
+                    <div className="h-3 bg-gray-100 rounded w-16"></div>
+                  </div>
+
+                  {/* Message */}
+                  <div className="h-4 bg-gray-100 rounded w-full mb-2"></div>
+
+                  {/* Metadata */}
+                  <div className="flex gap-4">
+                    <div className="h-3 bg-gray-100 rounded w-28"></div>
+                    <div className="h-3 bg-gray-100 rounded w-12"></div>
                   </div>
                 </div>
-                <div className="h-4 bg-gray-200 rounded w-20"></div>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
+
+        {/* Loading Message */}
+        <p className="mt-6 text-center text-sm text-gray-400">
+          Loading alerts...
+        </p>
       </div>
-    </div>
+    </main>
   );
 }
