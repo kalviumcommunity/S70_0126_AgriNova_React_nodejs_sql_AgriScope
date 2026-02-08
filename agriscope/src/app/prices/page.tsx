@@ -119,104 +119,189 @@ export default async function PricesPage() {
   const prices = await getPrices();
   const lastUpdated = new Date().toLocaleString("en-IN", {
     timeZone: "Asia/Kolkata",
+    hour: "2-digit",
+    minute: "2-digit",
   });
+
+  // Empty state check
+  if (!prices || prices.length === 0) {
+    return (
+      <main className="min-h-screen py-10 md:py-14 px-6 bg-gray-50">
+        <div className="max-w-5xl mx-auto">
+          <header className="mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+              📊 Live Mandi Prices
+            </h1>
+            <p className="text-gray-600">
+              Real-time crop prices from mandis across India
+            </p>
+          </header>
+          <div className="bg-white rounded-xl border border-gray-200 p-10 text-center">
+            <p className="text-5xl mb-4" aria-hidden="true">🌾</p>
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              No prices available right now
+            </h2>
+            <p className="text-gray-600 max-w-md mx-auto">
+              We&apos;re working on fetching the latest mandi prices. Please check back in a few minutes.
+            </p>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen py-10 md:py-14 px-6 bg-gray-50">
       <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <header className="mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+        {/* Page Header */}
+        <header className="mb-6 md:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
             📊 Live Mandi Prices
           </h1>
-          <p className="text-gray-700 text-base">
-            Real-time crop prices from mandis across India
+          <p className="text-gray-600 text-base mb-3">
+            Today&apos;s crop prices from major mandis across India
           </p>
-          <div className="mt-3 text-sm text-green-700 bg-green-50 border border-green-100 inline-flex items-center gap-2 px-4 py-2 rounded-full">
-            <span aria-hidden="true">🔄</span>
-            <span>Auto-refreshes every 60 seconds</span>
-            <span className="text-green-600">•</span>
-            <span>Last updated: {lastUpdated}</span>
-          </div>
+          <p className="text-xs text-gray-500">
+            Prices refresh automatically every 60 seconds · Last updated at {lastUpdated}
+          </p>
         </header>
 
-        {/* Price Table */}
-        <section className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-green-600 text-white">
-                <tr>
-                  <th scope="col" className="px-4 md:px-6 py-4 text-left text-sm font-semibold">
-                    Crop
-                  </th>
-                  <th scope="col" className="px-4 md:px-6 py-4 text-left text-sm font-semibold">
-                    Mandi
-                  </th>
-                  <th scope="col" className="px-4 md:px-6 py-4 text-left text-sm font-semibold hidden sm:table-cell">
-                    State
-                  </th>
-                  <th scope="col" className="px-4 md:px-6 py-4 text-right text-sm font-semibold">
-                    Min (₹)
-                  </th>
-                  <th scope="col" className="px-4 md:px-6 py-4 text-right text-sm font-semibold">
-                    Max (₹)
-                  </th>
-                  <th scope="col" className="px-4 md:px-6 py-4 text-right text-sm font-semibold">
-                    Modal (₹)
-                  </th>
-                  <th scope="col" className="px-4 md:px-6 py-4 text-center text-sm font-semibold hidden md:table-cell">
-                    Unit
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {prices.map((price, index) => (
-                  <tr
-                    key={price.id}
-                    className={`${index % 2 === 0 ? "bg-gray-50/50" : "bg-white"} hover:bg-green-50/50`}
-                  >
-                    <td className="px-4 md:px-6 py-4 font-medium text-gray-900">
-                      {price.crop}
-                    </td>
-                    <td className="px-4 md:px-6 py-4 text-gray-600">{price.mandi}</td>
-                    <td className="px-4 md:px-6 py-4 text-gray-600 hidden sm:table-cell">{price.state}</td>
-                    <td className="px-4 md:px-6 py-4 text-right text-gray-600 tabular-nums">
-                      ₹{price.minPrice.toLocaleString("en-IN")}
-                    </td>
-                    <td className="px-4 md:px-6 py-4 text-right text-gray-600 tabular-nums">
-                      ₹{price.maxPrice.toLocaleString("en-IN")}
-                    </td>
-                    <td className="px-4 md:px-6 py-4 text-right font-semibold text-green-700 tabular-nums">
-                      ₹{price.modalPrice.toLocaleString("en-IN")}
-                    </td>
-                    <td className="px-4 md:px-6 py-4 text-center text-gray-500 text-sm hidden md:table-cell">
-                      {price.unit}
-                    </td>
+        {/* Prices Table */}
+        <section aria-labelledby="prices-table-heading">
+          <h2 id="prices-table-heading" className="sr-only">Mandi Prices Table</h2>
+          
+          {/* Desktop Table */}
+          <div className="hidden sm:block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="bg-green-600 text-white">
+                    <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide">
+                      Crop
+                    </th>
+                    <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide">
+                      Mandi
+                    </th>
+                    <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide">
+                      State
+                    </th>
+                    <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-right">
+                      Min Price
+                    </th>
+                    <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-right">
+                      Max Price
+                    </th>
+                    <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-right bg-green-700">
+                      Modal Price
+                    </th>
+                    <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-center">
+                      Unit
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {prices.map((price, index) => (
+                    <tr
+                      key={price.id}
+                      className={`${index % 2 === 0 ? "bg-white" : "bg-gray-50/60"} hover:bg-green-50 transition-colors`}
+                    >
+                      <td className="px-5 py-4 font-medium text-gray-900">
+                        {price.crop}
+                      </td>
+                      <td className="px-5 py-4 text-gray-700">
+                        {price.mandi}
+                      </td>
+                      <td className="px-5 py-4 text-gray-500 text-sm">
+                        {price.state}
+                      </td>
+                      <td className="px-5 py-4 text-right text-gray-600 tabular-nums">
+                        ₹{price.minPrice.toLocaleString("en-IN")}
+                      </td>
+                      <td className="px-5 py-4 text-right text-gray-600 tabular-nums">
+                        ₹{price.maxPrice.toLocaleString("en-IN")}
+                      </td>
+                      <td className="px-5 py-4 text-right tabular-nums bg-green-50/50">
+                        <span className="font-semibold text-green-700">
+                          ₹{price.modalPrice.toLocaleString("en-IN")}
+                        </span>
+                      </td>
+                      <td className="px-5 py-4 text-center text-gray-500 text-sm">
+                        /{price.unit}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Mobile Card Layout */}
+          <div className="sm:hidden space-y-3">
+            {prices.map((price) => (
+              <div
+                key={price.id}
+                className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm"
+              >
+                <div className="flex justify-between items-start mb-3">
+                  <div>
+                    <h3 className="font-semibold text-gray-900">{price.crop}</h3>
+                    <p className="text-sm text-gray-500">
+                      {price.mandi}, {price.state}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-lg font-bold text-green-700">
+                      ₹{price.modalPrice.toLocaleString("en-IN")}
+                    </p>
+                    <p className="text-xs text-gray-500">per {price.unit}</p>
+                  </div>
+                </div>
+                <div className="flex justify-between text-sm pt-3 border-t border-gray-100">
+                  <div>
+                    <span className="text-gray-500">Min: </span>
+                    <span className="text-gray-700 tabular-nums">₹{price.minPrice.toLocaleString("en-IN")}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500">Max: </span>
+                    <span className="text-gray-700 tabular-nums">₹{price.maxPrice.toLocaleString("en-IN")}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* Info Box */}
-        <aside className="mt-8 bg-amber-50/70 border border-amber-200 rounded-xl p-5 md:p-6">
-          <h2 className="font-semibold text-amber-900 mb-3 flex items-center gap-2">
-            <span aria-hidden="true">ℹ️</span>
-            Understanding Prices
-          </h2>
-          <ul className="text-amber-800 space-y-2 text-sm leading-relaxed">
-            <li>
-              <strong className="text-amber-900">Min Price:</strong> Lowest traded price in the mandi today
-            </li>
-            <li>
-              <strong className="text-amber-900">Max Price:</strong> Highest traded price in the mandi today
-            </li>
-            <li>
-              <strong className="text-amber-900">Modal Price:</strong> Most common transaction price (recommended reference)
-            </li>
-          </ul>
+        {/* Understanding Prices - Info Box */}
+        <aside className="mt-6 md:mt-8 bg-gray-100/80 border border-gray-200 rounded-lg p-4 md:p-5">
+          <details className="group">
+            <summary className="flex items-center justify-between cursor-pointer list-none text-sm font-medium text-gray-700 hover:text-gray-900">
+              <span className="flex items-center gap-2">
+                <span aria-hidden="true">💡</span>
+                What do these prices mean?
+              </span>
+              <span className="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <dl className="mt-4 space-y-3 text-sm text-gray-600 border-t border-gray-200 pt-4">
+              <div>
+                <dt className="font-medium text-gray-800 inline">Min Price: </dt>
+                <dd className="inline">The lowest price at which the crop was sold today.</dd>
+              </div>
+              <div>
+                <dt className="font-medium text-gray-800 inline">Max Price: </dt>
+                <dd className="inline">The highest price at which the crop was sold today.</dd>
+              </div>
+              <div>
+                <dt className="font-medium text-gray-800 inline">Modal Price: </dt>
+                <dd className="inline">The most common selling price — <em>use this as your reference</em>.</dd>
+              </div>
+            </dl>
+          </details>
         </aside>
+
+        {/* Helpful tip for farmers */}
+        <p className="mt-4 text-center text-xs text-gray-500">
+          💡 Tip: Compare the Modal Price with your local buyer&apos;s offer to negotiate better.
+        </p>
       </div>
     </main>
   );
